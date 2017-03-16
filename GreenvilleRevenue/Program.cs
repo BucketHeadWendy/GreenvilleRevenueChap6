@@ -55,10 +55,13 @@ class GreenvilleRevenue
         //Chapter 6 Addition Begin
         string[] contestantTalents = { "S", "D", "M", "O" };
         string[] currentNames = { };
+        string[] currentTalents;
+        int[] talentCounts = {0, 0, 0, 0};
         currentNames = new string[thisYearNum];
         string inputSkill, inputName;
         bool isValid = false;
         int x = 0;
+        int y = 0;
 
         while( x < currentNames.Length)
             
@@ -68,15 +71,23 @@ class GreenvilleRevenue
             Write("Please enter a skill, either S for singing, D for Dancing, M for Musical Intrument, or O for Other: ");
             inputSkill = ReadLine();
             
-
             while (isValid == false)
             {
-                if (inputSkill == contestantTalents[x])
-                    isValid = true;
-                else
+                for (y = 0; y < contestantTalents.Length; y++)
+                {
+                    if (inputSkill == contestantTalents[y])
+                    {
+                        isValid = true;
+                        talentCounts[y] += 1;
+                    }
+                }
+                if (isValid == false)
+                {
+                    WriteLine("The skill you have entered is invalid.");
                     Write("Please enter a skill, either S for singing, D for Dancing, M for Musical Intrument, or O for Other: ");
-                     inputSkill = ReadLine();
-
+                    inputSkill = ReadLine();
+                }
+                    
             }
 
             currentNames[x] = Convert.ToString(inputName);   
@@ -85,6 +96,22 @@ class GreenvilleRevenue
             isValid = false;
  
             
+        }
+
+        inputSkill = "";
+        while (inputSkill != "Q")
+        {
+            WriteLine("Enter a talent code to see how many contestants will be showcasing that talent this year OR enter Q to quit: ");
+            inputSkill = ReadLine();
+            for (y = 0; y < contestantTalents.Length; y++)
+            {
+                if (inputSkill == contestantTalents[y])
+                {
+                    WriteLine("{0} contestant(s) will be showcasing that talent this year.", talentCounts[y]);
+                }
+            }
+
+
         }
         //Chapter 6 Addition End      
 
