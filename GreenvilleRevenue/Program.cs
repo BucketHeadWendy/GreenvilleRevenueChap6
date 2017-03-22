@@ -91,7 +91,7 @@ class GreenvilleRevenue
             }
 
             currentNames[x] = Convert.ToString(inputName);   
-            contestantTalents[x] = Convert.ToString(inputSkill);
+            //contestantTalents[x] = Convert.ToString(inputSkill);
             x += 1;
             isValid = false;
  
